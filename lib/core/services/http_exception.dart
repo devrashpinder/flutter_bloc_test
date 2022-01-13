@@ -1,14 +1,14 @@
 // ignore: avoid_web_libraries_in_flutter
 import 'dart:html';
 
-class HttpException implements Exception {
+class HttpServerException implements Exception {
   /// Description of the cause of the timeout.
-  final HttpStatus? httpStatus;
+  final int? httpStatus;
 
   /// The duration that was exceeded.
   final Duration? duration;
 
-  HttpException(this.httpStatus, [this.duration]);
+  HttpServerException({this.httpStatus, this.duration});
 
   @override
   String toString() {

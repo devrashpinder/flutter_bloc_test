@@ -2,6 +2,8 @@
 
 import 'dart:io';
 
+import 'package:flutter_bloc_test_nextbase/core/services/http_exception.dart';
+
 import 'network_result.dart';
 import 'package:dio/dio.dart';
 
@@ -19,23 +21,19 @@ class DioClient {
         requestBody: true, responseBody: true, logPrint: (log) => print(log)));
   }
 
-  Future<Result> get(String path, [Map<String, dynamic>? query]) async {
+  Future<Result> get(String path) async {
     Response response;
 
     try {
-      if (query != null) {
-        response = await dio.get(path, queryParameters: query);
-      } else {
-        response = await dio.get(path);
-      }
+      response = await dio.get(path);
       if (response.statusCode == HttpStatus.ok) {
         return Result.success(response.data);
       } else {
         return Result.failure(response);
       }
     } on DioError catch (exception) {
-      final resultError = ResultError.fromResponse(exception);
-      return Result.failure(resultError);
+      //final resultError = ResultError.fromResponse(exception);
+      throw HttpServerException(httpStatus: exception.response?.statusCode);
     } catch (e) {
       return Result.failure(e);
     }

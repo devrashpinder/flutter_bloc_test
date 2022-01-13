@@ -6,6 +6,7 @@ import 'package:flutter_bloc_test_nextbase/core/network/network_result.dart';
 import 'package:kiwi/kiwi.dart';
 import 'package:retry/retry.dart';
 
+import 'http_exception.dart';
 import 'service_path.dart';
 
 class MobileService {
@@ -15,7 +16,7 @@ class MobileService {
     var path = ServicePath.sampleData + "$page";
     final dioClient = KiwiContainer().resolve<DioClient>();
     final result = await retry(() => dioClient.get(path),
-        retryIf: (e) => e is SocketException || e is TimeoutException);
-    return dioClient.get(path);
+        maxAttempts: 100, retryIf: (e) => e is HttpServerException);
+    return result;
   }
 }
