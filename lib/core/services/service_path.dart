@@ -4,5 +4,5 @@ class ServicePath {
 
 class BaseUrl {
   static const String dev =
-      " https://us-central1-mynextbase-connect.cloudfunctions.net";
+      "https://us-central1-mynextbase-connect.cloudfunctions.net";
 }
