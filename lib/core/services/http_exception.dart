@@ -1,5 +1,4 @@
 // ignore: avoid_web_libraries_in_flutter
-import 'dart:html';
 
 class HttpServerException implements Exception {
   /// Description of the cause of the timeout.

@@ -3,17 +3,16 @@
 import 'dart:io';
 
 import 'package:flutter_bloc_test_nextbase/core/services/http_exception.dart';
+import 'package:flutter_bloc_test_nextbase/core/services/service_path.dart';
 
 import 'network_result.dart';
 import 'package:dio/dio.dart';
-
-import 'result_error.dart';
 
 class DioClient {
   late Dio dio;
 
   DioClient() {
-    var options = BaseOptions(baseUrl: "", headers: {
+    var options = BaseOptions(baseUrl: BaseUrl.dev, headers: {
       'content-type': 'application/json',
     });
     dio = Dio(options);
