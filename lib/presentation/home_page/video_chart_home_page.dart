@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_test_nextbase/bloc/cubit/video_charts_cubit.dart';
-import 'package:flutter_bloc_test_nextbase/bloc/page_cubit_states.dart';
+import 'package:flutter_bloc_test_nextbase/bloc/events/page_events.dart';
+import 'package:flutter_bloc_test_nextbase/bloc/page_states/page_cubit_states.dart';
+import 'package:flutter_bloc_test_nextbase/bloc/video_charts_bloc/video_charts_bloc.dart';
 import 'package:flutter_bloc_test_nextbase/data_layer/respository/video_meta_repo.dart';
 import 'package:flutter_bloc_test_nextbase/presentation/utility/loading_widget/wait_widget.dart';
 
-import 'widgets/line_xyz_chart_widget.dart';
+import 'widgets/line_chart_widget.dart';
 
 class VideoChartHomeScreen extends StatelessWidget {
   const VideoChartHomeScreen({Key? key}) : super(key: key);
@@ -14,7 +15,7 @@ class VideoChartHomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) =>
-          VideoChartsCubit(VideoMetaDataRepository())..fetchVideoMetaData(),
+          VideoChartsBloc(VideoMetaDataRepository())..add(PageLoadingEvents()),
       child: const VideoChartHomePage(),
     );
   }
@@ -33,7 +34,7 @@ class VideoChartHomePage extends StatelessWidget {
   }
 
   Widget _buildBody(BuildContext context) {
-    return BlocBuilder<VideoChartsCubit, PageCubitState>(builder: (_, state) {
+    return BlocBuilder<VideoChartsBloc, PageCubitState>(builder: (_, state) {
       if (state is PageCubitInitialState || state is PageCubitLoadingState) {
         return const WaitWidget();
       } else if (state is PageCubitSuccessState) {

@@ -11,7 +11,7 @@ class HttpServerException implements Exception {
 
   @override
   String toString() {
-    String result = "TimeoutException";
+    String result = "Server Internal Exception";
     if (duration != null) result = "TimeoutException after $duration";
     if (httpStatus != null) result = "$result: $httpStatus";
     return result;

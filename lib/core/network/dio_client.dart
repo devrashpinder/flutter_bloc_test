@@ -22,7 +22,6 @@ class DioClient {
 
   Future<Result> get(String path) async {
     Response response;
-
     try {
       response = await dio.get(path);
       if (response.statusCode == HttpStatus.ok) {
@@ -31,7 +30,6 @@ class DioClient {
         return Result.failure(response);
       }
     } on DioError catch (exception) {
-      //final resultError = ResultError.fromResponse(exception);
       throw HttpServerException(httpStatus: exception.response?.statusCode);
     } catch (e) {
       return Result.failure(e);
