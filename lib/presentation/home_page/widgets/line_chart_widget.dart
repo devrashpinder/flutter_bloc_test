@@ -22,15 +22,22 @@ class VideoLineChartsWidget extends StatelessWidget {
     return Column(
       children: [
         Container(
-            padding: const EdgeInsets.all(16.0),
-            height: 250,
+            margin: const EdgeInsets.only(top: 44),
+            padding: const EdgeInsets.only(top: 44, left: 16, right: 16),
+            height: 350,
             color: Colors.black,
             child: Stack(children: _combinedLineCharts())),
         Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: ElevatedButton(
-              onPressed: () => _pushToMapScreen(context),
-              child: const Text("Video Map Locations")),
+          padding: const EdgeInsets.only(top: 44),
+          child: SizedBox(
+            height: 44,
+            child: ElevatedButton(
+                onPressed: () => _pushToMapScreen(context),
+                child: const Text(
+                  "Video Map Locations",
+                  style: TextStyle(color: Colors.white),
+                )),
+          ),
         ),
       ],
     );
