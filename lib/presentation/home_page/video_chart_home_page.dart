@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_test_nextbase/bloc/events/page_events.dart';
 import 'package:flutter_bloc_test_nextbase/bloc/page_states/page_cubit_states.dart';
-import 'package:flutter_bloc_test_nextbase/bloc/video_map_block/video_charts_bloc.dart';
+import 'package:flutter_bloc_test_nextbase/bloc/video_charts_bloc/video_charts_bloc.dart';
 import 'package:flutter_bloc_test_nextbase/data_layer/respository/video_meta_repo.dart';
 import 'package:flutter_bloc_test_nextbase/presentation/utility/loading_widget/wait_widget.dart';
 
